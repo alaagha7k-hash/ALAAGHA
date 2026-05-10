@@ -1,43 +1,4 @@
 
-name: 🎨 Deploy All to Render
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-
-  # ============================
-  # 🔐 نشر المنصة الرئيسية
-  # ============================
-  deploy-main:
-    name: 🔐 Deploy Main Platform
-    runs-on: ubuntu-latest
-    if: |
-      contains(github.event.head_commit.modified, 'jwt-auth-app/')
-    steps:
-      - name: 🚀 Trigger Render Deploy
-        run: |
-          curl -X POST \
-            "https://api.render.com/v1/services/${{ secrets.RENDER_MAIN_SERVICE_ID }}/deploys" \
-            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
-            -H "Content-Type: application/json" \
-            -d '{}'
-
-      - name: ✅ Confirm Deploy
-        run: echo "✅ Main Platform deployment triggered!"
-
-  # ============================
-  # 📢 نشر موقع الإعلانات
-  # ============================
-  deploy-ads:
-    name: 📢 Deploy Ads Website
-    runs-on: ubuntu-latest
-    if: |
-      contains(github.event.head_commit.modified, 'aghati-ads-website/')
-    steps:
-      - name: 🚀 Trigger Render Deploy
-        run: |
           curl -X POST \
             "https://api.render.com/v1/services/${{ secrets.RENDER_ADS_SERVICE_ID }}/deploys" \
             -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
@@ -106,3 +67,5 @@ jobs:
           echo "👑 Imperial: ${{ needs.deploy-imperial.result }}"
           echo "🎯 Skill:    ${{ needs.deploy-skill.result }}"
           echo "================================"
+
+
