@@ -1,0 +1,5 @@
+
+cp -r /path/to/jwt-auth-app ./jwt-auth-app
+cp -r /path/to/aghati-ads-website ./aghati-ads-website
+cp -r /path/to/aghati-imperial-website ./aghati-imperial-website
+cp -r /path/to/aghati-skill-website ./aghati-skill-website
